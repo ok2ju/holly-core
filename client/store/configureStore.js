@@ -6,12 +6,14 @@ import rootSaga from '../sagas';
 const initStore = () => {
   const sagaMiddleware = createSagaMiddleware();
 
+  /* eslint-disable no-underscore-dangle */
   const composeEnhancers =
     typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         name: 'Holly Instance',
       }) : compose;
+  /* eslint-enable no-underscore-dangle */
 
   const store = createStore(
     reducers,

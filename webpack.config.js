@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { resolve, join } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -8,7 +8,7 @@ module.exports = {
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './index.js',
+    './index.jsx',
   ],
   output: {
     filename: 'bundle.js',
@@ -16,7 +16,7 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.css'],
     modules: [
       resolve(__dirname, 'client'),
       resolve(__dirname, 'node_modules'),
@@ -32,8 +32,34 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
+        enforce: 'pre',
+        use: ['eslint-loader'],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.jsx?$/,
         use: ['babel-loader'],
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', {
+          loader: 'css-loader',
+          query: {
+            import: false,
+            importLoaders: 1,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+            modules: true,
+            sourceMap: true,
+          },
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            config: {
+              path: join(__dirname, './postcss.config.js'),
+            },
+          },
+        }],
       },
     ],
   },
