@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import io from 'socket.io-client'; // eslint-disable-line
 import { eventChannel } from 'redux-saga';
 import { fork, take, call, put, cancel, takeLatest } from 'redux-saga/effects';
 import {
@@ -6,6 +6,7 @@ import {
   WS_OPEN_CONNECTION_SUCCESS,
   WS_OPEN_CONNECTION_FAIL,
   WS_CLOSE_CONNECTION,
+  IFNO_RECEIVED,
   ERROR_RECEIVED,
 } from '../actions';
 
@@ -23,6 +24,10 @@ function subscribe(socket) {
     socket.on('app error', (data) => {
       emit({ type: ERROR_RECEIVED, payload: data });
       console.log(data);
+    });
+
+    socket.on('app info', (data) => {
+      emit({ type: IFNO_RECEIVED, payload: data });
     });
 
     socket.on('disconnect', () => {

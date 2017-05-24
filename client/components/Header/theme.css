@@ -1,0 +1,15 @@
+.header {
+  background-color: #24292e;
+}
+
+.headerInner {
+  padding: 10px 0;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 18px;
+  color: #fff;
+  margin: 0;
+}
