@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import theme from './theme.css';
 
 const getFilename = (path) => {
@@ -8,13 +9,17 @@ const getFilename = (path) => {
 };
 
 const ObserverItem = ({ item }) => (
-  <div className={theme.observerItem}>
+  <div
+    className={cx(theme.observerItem, [theme[item.type]])}
+  >
     <h2 className={theme.message}>{item.message}</h2>
-    <div className={theme.info}>
-      <span className={theme.special}>{getFilename(item.fileName)}</span> -&nbsp;
-      <span className={theme.special}>{item.functionName}</span> function&nbsp;
-      in <span className={theme.special}>{getFilename(item.fileName)}</span>&nbsp;
-      at <span className={theme.special}>{item.lineNumber}:{item.columnNumber}</span>
+    <div className={theme.description}>
+      <p>
+        <span className={theme.special}>{getFilename(item.fileName)}</span> -&nbsp;
+        <span className={theme.special}>{item.functionName}</span> function&nbsp;
+        in <span className={theme.special}>{getFilename(item.fileName)}</span>&nbsp;
+        at <span className={theme.special}>{item.lineNumber}:{item.columnNumber}</span>
+      </p>
     </div>
   </div>
 );

@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import Layout from '../components/Layout';
 import { WS_OPEN_CONNECTION_PENDING } from '../actions';
+import { getMessages } from '../reducers/messages';
 
 const mapStateToProps = state => ({
-  errors: state.errors.list,
+  messages: getMessages(state, 'all'),
 });
 
 const mapDispatchToProps = dispatch => ({

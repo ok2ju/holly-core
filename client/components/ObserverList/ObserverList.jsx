@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import ObserverItem from '../ObserverItem';
 import theme from './theme.css';
 
-const ObserverList = ({ errors }) => (
+const ObserverList = ({ messages }) => (
   <div className={theme.observerList}>
-    {errors.map((error, index) => (
+    {messages.map((message, index) => (
       <ObserverItem
         key={index}
-        item={error}
+        item={message}
       />
     ))}
   </div>
 );
 
 ObserverList.propTypes = {
-  errors: PropTypes.array,
+  messages: PropTypes.array,
 };
 
 export default ObserverList;

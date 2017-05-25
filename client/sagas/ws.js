@@ -6,8 +6,7 @@ import {
   WS_OPEN_CONNECTION_SUCCESS,
   WS_OPEN_CONNECTION_FAIL,
   WS_CLOSE_CONNECTION,
-  IFNO_RECEIVED,
-  ERROR_RECEIVED,
+  MESSAGE_RECEIVED,
 } from '../actions';
 
 function connect() {
@@ -21,13 +20,9 @@ function connect() {
 
 function subscribe(socket) {
   return eventChannel((emit) => {
-    socket.on('app error', (data) => {
-      emit({ type: ERROR_RECEIVED, payload: data });
+    socket.on('message', (data) => {
+      emit({ type: MESSAGE_RECEIVED, payload: data });
       console.log(data);
-    });
-
-    socket.on('app info', (data) => {
-      emit({ type: IFNO_RECEIVED, payload: data });
     });
 
     socket.on('disconnect', () => {
