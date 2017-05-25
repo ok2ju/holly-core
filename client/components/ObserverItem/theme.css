@@ -6,16 +6,28 @@
   margin-bottom: 10px;
 }
 
+.info {
+  border-top: 2px solid #3f51b5;
+}
+
+.error {
+  border-top: 2px solid #F44336;
+}
+
 .message {
   font-size: 18px;
+  font-weight: 400;
   margin: 0;
 }
 
 
-.info {
-
+.description {
+  p {
+    font-size: 13px;
+    margin: 5px 0;
+  }
 }
 
 .special {
-  font-weight: bold;
+  font-weight: 700;
 }

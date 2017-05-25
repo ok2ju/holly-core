@@ -61,6 +61,13 @@ module.exports = {
           },
         }],
       },
+      {
+        test: /\.(ttf|otf|woff)(\?[a-z0-9=&.]+)?$/,
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[hash:8].[ext]',
+        },
+      },
     ],
   },
   plugins: [

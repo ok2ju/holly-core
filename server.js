@@ -7,13 +7,8 @@ const port = process.env.PORT || 8022;
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  socket.on('app info', (data) => {
-    io.emit('app info', data);
-    console.log(data);
-  });
-
-  socket.on('app error', (data) => {
-    io.emit('app error', data);
+  socket.on('message', (data) => {
+    io.emit('message', data);
     console.log(data);
   });
 

@@ -6,7 +6,7 @@ import theme from './theme.css';
 
 class Layout extends PureComponent {
   static propTypes = {
-    errors: PropTypes.array,
+    messages: PropTypes.array,
     connectWS: PropTypes.func,
   };
 
@@ -19,7 +19,7 @@ class Layout extends PureComponent {
       <div className={theme.layout}>
         <Header />
         <div className={theme.content}>
-          <ObserverList errors={this.props.errors} />
+          <ObserverList messages={this.props.messages} />
         </div>
       </div>
     );
